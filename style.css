@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
 /* Remove default margin */
 body,
 h1,
@@ -12,29 +18,29 @@ h2,
 h3,
 h4,
 p,
+ul[class],
+ol[class],
+li,
 figure,
+figcaption,
 blockquote,
 dl,
 dd {
   margin: 0;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
-/* Set core root defaults */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Set core body defaults */
 body {
   min-height: 100vh;
+  scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
 }
 
 /* A elements that don't have a class get default styles */
@@ -43,10 +49,14 @@ a:not([class]) {
 }
 
 /* Make images easier to work with */
-img,
-picture {
+img {
   max-width: 100%;
   display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -59,9 +69,7 @@ select {
 
 /* Remove all animations and transitions for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -69,22 +77,103 @@ select {
   }
 }
 
-/* Main code */
+/* Main Code */
 html {
-  font-family: roboto, open-sans, sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #6089ff;
 }
 
 .pricing-label {
   display: flex;
+  flex-direction: column;
   background-color: white;
+  border-radius: 10px;
+  padding: 15px 25px;  
+  max-width: 960px;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
 
+.pricing-plan {
+  padding: 10px;
+  border-bottom: 1px solid #e1f1fe;
+}
 
+.pricing-label:last-child {
+  border-bottom: none;
+}
+
+.feature-image {
+  margin-bottom: 25px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.pricing-header {
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pricing-feature {
+  margin: 50px 0 25px;
+  color: #016ff9;
+}
+
+.feature-item {
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 15px 0;
+  border-top: 1px solid #e1f1fe;
+}
+
+.feature-item:last-child {
+  border-bottom: 1px solid #e1f1fe;
+}
+
+.pricing-value {
+  color: #016ff9;
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+}
+
+.feature-button {
+  border: 1px solid #9dd1ff;
+  border-radius: 10px;
+  color: #348efe;
+  text-decoration: none;
+  display: inline-block;
+  padding: 15px 35px;
+  margin: 25px 0;
+  transition: background-color 200ms ease-in-out;
+}
+
+.feature-button:hover, .feature-button:focus {
+  background-color: #9dd1ff;
+}
+
+@media (min-width: 900px) {
+  .pricing-label {
+    flex-direction: row;
+  }
+  .pricing-plan {
+    border-bottom: none;
+    border-right: 1px solid #e1f1fe;
+  }
+  .pricing-plan:last-child {
+    border-right: none;
+  }
 }
